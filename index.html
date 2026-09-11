@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Structures Simulator - Premium</title>
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="navbar-content">
+            <div class="logo-section">
+                <span class="logo-icon">📊</span>
+                <h1 class="logo">Data Structure Simulator</h1>
+            </div>
+
+            <nav class="nav-links">
+                <button class="nav-btn active" data-structure="stack">
+                    <span class="nav-icon">📚</span>
+                    <span class="nav-text">stack</span>
+                </button>
+
+                <button class="nav-btn" data-structure="queue">
+                    <span class="nav-icon">🚶</span>
+                    <span class="nav-text">Queue</span>
+                </button>
+
+                <button class="nav-btn" data-structure="linkedlist">
+                    <span class="nav-icon">🔗</span>
+                    <span class="nav-text">Linked List</span>
+                </button>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <!-- Stack Section -->
+        <section id="stack-section" class="section active">
+            <div class="section-header">
+                <div class="header-content">
+                    <h2>📚 Stack Data Structure</h2>
+                    <p>Last-In-First-Out (LIFO) - Last element added is the first to be removed</p>
+                </div>
+            </div>
+
+            <div class="content-wrapper">
+                <div class="control-panel">
+                    <div class="control-header">
+                        <h3>⚙️ controls</h3>
+                    </div>
+                    
+                    <div class="input-group">
+                        <div class="input-wrapper">
+                            <input type="number" id="stack-input" placeholder="Enter a value" class="input-field">
+                        </div>
+                        <button id="stack-push" class="btn btn-primary">
+                            <span class="btn-icon">➕</span>
+                            <span>Push</span>
+                        </button>
+                        <button id="stack-pop" class="btn btn-secondary">
+                            <span class="btn-icon">➖</span>
+                            <span>Pop</span>
+                        </button>
+                        <button id="stack-peek" class="btn btn-info">
+                            <span class="btn-icon">👁️</span>
+                            <span>Peek</span>
+                        </button>
+                        <button id="stack-clear" class="btn btn-danger">
+                            <span class="btn-icon">🗑️</span>
+                            <span>Clear</span>
+                        </button>
+                    </div>
+
+                    <div id="stack-message" class="message-box"></div>
+                </div>
