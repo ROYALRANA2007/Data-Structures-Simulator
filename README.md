@@ -1,2 +1,2 @@
-Data Structures Simulator
-An interactive web-based simulator for learning and visualizing Stack, Queue, and Linked List operations. Built using HTML, CSS, and JavaScript, it features a modern dark UI, real-time visualization, live statistics, responsive design, and keyboard-friendly controls
+**Data Structure Simulator** 
+is an interactive educational project designed to help students understand fundamental data structures through simple visual representations. The simulator covers **Stack, Queue, Linked List, and Tree**, along with their basic operations such as insertion, deletion, searching, and traversal. The project uses **HTML and CSS** for the interface and **Python** for implementing the data structure operations and functionality. The main aim is to make learning data structures easier, more interactive, and practical for students.
