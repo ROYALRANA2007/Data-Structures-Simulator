@@ -1,37 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Structures Simulator - Premium</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
     <div class="navbar">
         <div class="navbar-content">
             <div class="logo-section">
-                <span class="logo-icon">📊</span>
+                <div class="logo-icon">📊</div>
                 <h1 class="logo">Data Structure Simulator</h1>
             </div>
-
             <nav class="nav-links">
                 <button class="nav-btn active" data-structure="stack">
                     <span class="nav-icon">📚</span>
-                    <span class="nav-text">stack</span>
+                    <span class="nav-text">Stack</span>
                 </button>
-
                 <button class="nav-btn" data-structure="queue">
                     <span class="nav-icon">🚶</span>
                     <span class="nav-text">Queue</span>
                 </button>
-
                 <button class="nav-btn" data-structure="linkedlist">
                     <span class="nav-icon">🔗</span>
                     <span class="nav-text">Linked List</span>
                 </button>
-
                 <button class="nav-btn" data-structure="tree">
                     <span class="nav-icon">🌳</span>
                     <span class="nav-text">Tree</span>
@@ -41,7 +35,6 @@
     </div>
 
     <div class="container">
-
         <!-- Stack Section -->
         <section id="stack-section" class="section active">
             <div class="section-header">
@@ -54,9 +47,8 @@
             <div class="content-wrapper">
                 <div class="control-panel">
                     <div class="control-header">
-                        <h3>⚙️ controls</h3>
+                        <h3>⚙️ Controls</h3>
                     </div>
-
                     <div class="input-group">
                         <div class="input-wrapper">
                             <input type="number" id="stack-input" placeholder="Enter a value" class="input-field">
@@ -78,25 +70,25 @@
                             <span>Clear</span>
                         </button>
                     </div>
-
                     <div id="stack-message" class="message-box"></div>
                 </div>
+
                 <div class="visualization-area">
                     <div class="visualization-header">📊 Visualization</div>
-
                     <div class="stack-container">
                         <div class="stack-pointer">↓ Top</div>
                         <div id="stack-visual" class="stack-visual"></div>
                     </div>
                 </div>
+
                 <div class="info-panel">
                     <div class="info-header">
                         <h3>📈 Statistics</h3>
                     </div>
-                    <table class="info-header">
+                    <table class="info-table">
                         <tr>
-                            <td><span class="strt-lable"> size:</span></td>
-                            <td id="stack-size" class="stat-value0">0</td>
+                            <td><span class="stat-label">Size:</span></td>
+                            <td id="stack-size" class="stat-value">0</td>
                         </tr>
                         <tr>
                             <td><span class="stat-label">Top Element:</span></td>
@@ -207,8 +199,7 @@
                             <input type="number" id="ll-input" placeholder="Enter a value" class="input-field">
                         </div>
                         <div class="input-wrapper">
-                            <input type="number" id="ll-position" placeholder="Position (0-indexed)"
-                                class="input-field">
+                            <input type="number" id="ll-position" placeholder="Position (0-indexed)" class="input-field">
                         </div>
                         <button id="ll-insert-head" class="btn btn-primary">
                             <span class="btn-icon">➕</span>
@@ -268,99 +259,60 @@
                 </div>
             </div>
         </section>
-    </div>
-    <!-- Tree Section -->
-    <section id="tree-section" class="section">
-        <div class="section-header">
-            <div class="header-content">
-                <h2>🌳 Tree Data Structure</h2>
-                <p>Hierarchical data structure with nodes connected through parent-child relationships</p>
-            </div>
-        </div>
-
-        <div class="content-wrapper">
-
-            <div class="control-panel">
-                <div class="control-header">
-                    <h3>⚙️ Controls</h3>
+        <!-- Tree Section -->
+        <section id="tree-section" class="section">
+            <div class="section-header">
+                <div class="header-content">
+                    <h2>🌳 Tree Data Structure</h2>
+                    <p>A hierarchical data structure made of parent and child nodes</p>
                 </div>
+            </div>
 
-                <div class="input-group">
-                    <div class="input-wrapper">
-                        <input type="number" id="tree-input" placeholder="Enter a value" class="input-field">
+            <div class="content-wrapper">
+                <div class="control-panel">
+                    <div class="control-header"><h3>⚙️ Controls</h3></div>
+                    <div class="input-group">
+                        <div class="input-wrapper">
+                            <input type="number" id="tree-input" placeholder="New node value" class="input-field">
+                        </div>
+                        <div class="input-wrapper">
+                            <input type="number" id="tree-parent-input" placeholder="Parent value (blank = root)" class="input-field">
+                        </div>
+                        <button id="tree-insert" class="btn btn-primary">
+                            <span class="btn-icon">➕</span><span>Insert Node</span>
+                        </button>
+                        <button id="tree-clear" class="btn btn-danger">
+                            <span class="btn-icon">🗑️</span><span>Clear Tree</span>
+                        </button>
                     </div>
-
-                    <button id="tree-insert" class="btn btn-primary">
-                        <span class="btn-icon">➕</span>
-                        <span>Insert</span>
-                    </button>
-
-                    <button id="tree-search" class="btn btn-info">
-                        <span class="btn-icon">👁️</span>
-                        <span>Search</span>
-                    </button>
-
-                    <button id="tree-delete" class="btn btn-secondary">
-                        <span class="btn-icon">➖</span>
-                        <span>Delete</span>
-                    </button>
-
-                    <button id="tree-clear" class="btn btn-danger">
-                        <span class="btn-icon">🗑️</span>
-                        <span>Clear</span>
-                    </button>
+                    <div id="tree-message" class="message-box"></div>
+                    <p class="tree-help">Leave the parent field blank to create the root. To add a child, enter the value of an existing parent node.</p>
                 </div>
 
-                <div id="tree-message" class="message-box"></div>
-            </div>
-
-            <div class="visualization-area">
-                <div class="visualization-header">📊 Visualization</div>
-
-                <div class="tree-container">
-                    <div id="tree-visual" class="tree-visual"></div>
-                </div>
-            </div>
-
-            <div class="info-panel">
-                <div class="info-header">
-                    <h3>📈 Statistics</h3>
+                <div class="visualization-area tree-visualization-area">
+                    <div class="visualization-header">📊 Tree Visualization</div>
+                    <div id="tree-visual" class="tree-visual"><div class="tree-empty">Empty Tree</div></div>
                 </div>
 
-                <table class="info-table">
-                    <tr>
-                        <td><span class="stat-label">Nodes:</span></td>
-                        <td id="tree-size" class="stat-value">0</td>
-                    </tr>
-
-                    <tr>
-                        <td><span class="stat-label">Root:</span></td>
-                        <td id="tree-root" class="stat-value">—</td>
-                    </tr>
-
-                    <tr>
-                        <td><span class="stat-label">Height:</span></td>
-                        <td id="tree-height" class="stat-value">0</td>
-                    </tr>
-
-                    <tr>
-                        <td><span class="stat-label">Last Operation:</span></td>
-                        <td id="tree-operation" class="stat-value">None</td>
-                    </tr>
-                </table>
+                <div class="info-panel">
+                    <div class="info-header"><h3>📈 Statistics</h3></div>
+                    <table class="info-table">
+                        <tr><td><span class="stat-label">Total Nodes:</span></td><td id="tree-size" class="stat-value">0</td></tr>
+                        <tr><td><span class="stat-label">Root Node:</span></td><td id="tree-root" class="stat-value">—</td></tr>
+                        <tr><td><span class="stat-label">Last Operation:</span></td><td id="tree-operation" class="stat-value">None</td></tr>
+                    </table>
+                </div>
             </div>
+        </section>
+    </div>
 
-        </div>
-    </section>
     <footer class="footer">
         <div class="footer-content">
-            <p>Data Structures Simulator | 🎓 Educational Tool for Learning Data Structures</p>
-            <p class="footer-subtitle">
-                Learn, Visualize, and Master Data Structures with Real-Time Simulation
-            </p>
+            <p>&copy; 2025 Data Structures Simulator | 🎓 Educational Tool for Learning Data Structures</p>
+            <p class="footer-subtitle">Learn, Visualize, and Master Data Structures with Real-Time Simulation</p>
         </div>
     </footer>
- <script src="script.js"></script>
-</body>
 
+    <script src="script.js"></script>
+</body>
 </html>
