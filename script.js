@@ -506,6 +506,125 @@ document.getElementById('ll-clear').addEventListener('click', () => {
     updateLinkedListUI();
 });
 
+// ===== Tree Implementation =====
+// This is a general tree: each node can have multiple children.
+class TreeNode {
+    constructor(data) {
+        this.data = data;
+        this.children = [];
+    }
+}
+
+class Tree {
+    constructor() {
+        this.root = null;
+        this.size = 0;
+    }
+
+    find(value, node = this.root) {
+        if (node === null) return null;
+        if (String(node.data) === String(value)) return node;
+        for (const child of node.children) {
+            const found = this.find(value, child);
+            if (found) return found;
+        }
+        return null;
+    }
+
+    insert(data, parentData) {
+        if (this.root === null) {
+            if (parentData !== null && parentData !== '') {
+                return { success: false, message: 'Tree is empty. Leave parent blank to create the root.' };
+            }
+            this.root = new TreeNode(data);
+            this.size++;
+            return { success: true, message: `Created root node ${data}.` };
+        }
+
+        if (parentData === null || parentData === '') {
+            return { success: false, message: 'Root already exists. Enter an existing parent value.' };
+        }
+        const parent = this.find(parentData);
+        if (!parent) {
+            return { success: false, message: `Parent ${parentData} was not found.` };
+        }
+        parent.children.push(new TreeNode(data));
+        this.size++;
+        return { success: true, message: `Inserted ${data} under parent ${parentData}.` };
+    }
+
+    clear() {
+        this.root = null;
+        this.size = 0;
+    }
+}
+
+const tree = new Tree();
+
+function updateTreeUI() {
+    const visual = document.getElementById('tree-visual');
+    visual.innerHTML = '';
+    if (tree.root === null) {
+        const empty = document.createElement('div');
+        empty.className = 'tree-empty';
+        empty.textContent = 'Empty Tree';
+        visual.appendChild(empty);
+    } else {
+        const buildNode = (node) => {
+            const item = document.createElement('div');
+            item.className = 'tree-node-group';
+            const label = document.createElement('div');
+            label.className = 'tree-node';
+            label.textContent = node.data;
+            item.appendChild(label);
+            if (node.children.length > 0) {
+                const children = document.createElement('div');
+                children.className = 'tree-children';
+                node.children.forEach(child => children.appendChild(buildNode(child)));
+                item.appendChild(children);
+            }
+            return item;
+        };
+        visual.appendChild(buildNode(tree.root));
+    }
+    document.getElementById('tree-size').textContent = tree.size;
+    document.getElementById('tree-root').textContent = tree.root === null ? '—' : tree.root.data;
+}
+
+document.getElementById('tree-insert').addEventListener('click', () => {
+    const input = document.getElementById('tree-input');
+    const parentInput = document.getElementById('tree-parent-input');
+    const data = input.value.trim();
+    const parentData = parentInput.value.trim();
+
+    if (data === '') {
+        showMessage('tree-message', 'Please enter a node value.', 'error');
+        return;
+    }
+
+    // Empty parent input means root only; the value 0 is a valid parent value.
+    const result = tree.insert(data, parentData === '' ? null : parentData);
+    showMessage('tree-message', result.message, result.success ? 'success' : 'error');
+    if (result.success) {
+        document.getElementById('tree-operation').textContent = result.message;
+        input.value = '';
+        parentInput.value = '';
+        input.focus();
+        updateTreeUI();
+    }
+});
+
+document.getElementById('tree-clear').addEventListener('click', () => {
+    if (tree.size === 0) {
+        showMessage('tree-message', 'Tree is already empty.', 'info');
+        return;
+    }
+    tree.clear();
+    document.getElementById('tree-operation').textContent = 'Cleared all nodes';
+    showMessage('tree-message', 'Tree cleared.', 'success');
+    updateTreeUI();
+});
+
 // ===== Navigation =====
 document.querySelectorAll('.nav-btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -537,7 +656,16 @@ document.getElementById('ll-position').addEventListener('keypress', (e) => {
     if (e.key === 'Enter') document.getElementById('ll-insert-pos').click();
 });
 
+// Keep this listener separate from the linked-list position listener.
+document.getElementById('tree-input').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') document.getElementById('tree-insert').click();
+});
+document.getElementById('tree-parent-input').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') document.getElementById('tree-insert').click();
+});
+
 // Initialize UI
 updateStackUI();
 updateQueueUI();
 updateLinkedListUI();
+updateTreeUI();
